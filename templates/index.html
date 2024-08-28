@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Artists</title>
+    <link rel="stylesheet" href="/templates/assests/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Radio+Canada+Big:ital,wght@0,400..700;1,400..700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    
+    <form action="/result" method="POST" class="form-filter">
+        <details>
+            <summary>Show Filters</summary>
+            <div class="filter">
+                <div class="creation-date">
+                    <label for="creation-date-range">Creation Date:</label>
+                    <input type="range" id="creation-date-range" min="1957" max="2024" value="0"
+                        oninput="document.getElementById('rangeValue').innerText = this.value" name="CreationDate">
+                    <p>CreationDate: <span id="rangeValue"></span></p>
+                </div>
+                <div class="first-album">
+                    <label for="first-album">First Album:</label>
+                    <input type="date" id="first-album" name="first-album">
+                </div>
+                <div class="members">
+                    <p>Select members number:</p>
+                    <label><input type="checkbox" name="members" value="1"> 1</label>
+                    <label><input type="checkbox" name="members" value="2"> 2</label>
+                    <label><input type="checkbox" name="members" value="3"> 3</label>
+                    <label><input type="checkbox" name="members" value="4"> 4</label>
+                    <label><input type="checkbox" name="members" value="5"> 5</label>
+                    <label><input type="checkbox" name="members" value="6"> 6</label>
+                    <label><input type="checkbox" name="members" value="7"> 7</label>
+                </div>
+                <div class="country-selection">
+                    <label for="countries">Select a country:</label>
+                    <select id="countries" name="countries">
+                        <option value="" selected disabled>Select country:</option>
+                        <option value="usa">usa</option>
+                        <option value="japan">japan</option>
+                        <option value="new_zealand">new_zealand</option>
+                        <option value="mexico">mexico</option>
+                        <option value="french_polynesia">french_polynesia</option>
+                        <option value="new_caledonia">new_caledonia</option>
+                        <option value="uk">uk</option>
+                        <option value="switzerland">switzerland</option>
+                        <option value="france">france</option>
+                        <option value="slovakia">slovakia</option>
+                        <option value="hungary">hungary</option>
+                        <option value="belarus">belarus</option>
+                        <option value="brazil">brazil</option>
+                        <option value="argentina">argentina</option>
+                        <option value="colombia">colombia</option>
+                        <option value="chile">chile</option>
+                        <option value="peru">peru</option>
+                        <option value="denmark">denmark</option>
+                        <option value="belgium">belgium</option>
+                        <option value="spain">spain</option>
+                        <option value="germany">germany</option>
+                        <option value="netherlands">netherlands</option>
+                        <option value="italy">italy</option>
+                        <option value="poland">poland</option>
+                        <option value="austria">austria</option>
+                        <option value="czechia">czechia</option>
+                        <option value="china">china</option>
+                        <option value="thailand">thailand</option>
+                        <option value="taiwan">taiwan</option>
+                        <option value="south_korea">south_korea</option>
+                        <option value="united_arab_emirates">united_arab_emirates</option>
+                        <option value="canada">canada</option>
+                        <option value="philippines">philippines</option>
+                    </select>
+                </div>
+                <button type="submit">Filter</button>
+            </div>
+        </details>
+    </form>
+
+    <div class="container">
+        {{range .}}
+        <div class="card">
+            <img src="{{.Image}}" alt="{{.Name}}">
+            <h3 class="card-name">{{.Name}}</h3>
+            <p>Creation Date: {{.CreationDate}}</p>
+            <p>First Album: {{.FirstAlbum}}</p>
+            <form action="/artist" method="get">
+                <button value="{{.Id}}" name="Id">Read more</button>
+            </form>
+        </div>
+        {{end}}
+    </div>
+
+
+</body>
+
+</html>

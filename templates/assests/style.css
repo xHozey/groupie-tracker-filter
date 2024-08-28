@@ -1,0 +1,240 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background-image: url(img/background.jpg);
+    font-family: "Radio Canada Big", sans-serif;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+.container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    justify-content: center;
+    gap: 65px;
+}
+.card {
+    width: 308px;
+    height: 397px;
+    text-align: center;
+    background: lightgrey;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.514);
+    border-radius: 10px;
+}
+.card-name {
+    font-size: 23px;
+    margin-bottom: 15px;
+}
+button {
+    font-family: "Radio Canada Big", cursive, sans-serif;
+    font-size: 15px;
+    width: 100px;
+    height: 40px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    background-color: #b0afcea4;
+    padding: 2px 8px;
+    border-radius: 20px;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+.btn {
+    margin-left: 45px;
+    width: 100px;
+    height: 50px;
+    font-size: 16px;
+    box-sizing: border-box; 
+}
+button:hover {
+    background-color: lightgrey;
+}
+img {
+    border-radius: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.7);
+    margin-top: 18px;
+    margin-bottom: 10px;
+    width: 212px;
+}
+.content {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin: 40px;
+    background-color: lightgrey;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.7);
+    padding: 20px;
+}
+.context {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 50px;
+    font-size: 16px;
+    padding: 40px;
+    gap: 80px;
+}
+.artimage {
+    border-radius: 0%;
+    width: 350px;
+    height: 350px;
+}
+.Members, .CreationDate, .FirstAlbum, .locations, .Dates, .DateLocation {
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 25px;
+}
+.member, .creation-date, .first-album, .location, .date, .date-location-item, .date-location-title {
+    text-align: left;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 18px;
+    font-family: serif;
+}
+
+/* General Form Styles */
+.form-filter {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Filter Section Styling */
+.filter-section {
+    margin-bottom: 10px;
+}
+
+.filter-section p {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .container {
+        gap: 20px; /* Adjust gap for medium screens */
+        }
+        
+        .card {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            }
+            
+            .content {
+                padding: 20px;
+                }
+                
+                .image-name {
+margin-bottom: 20px;
+}
+
+.artimage {
+width: 150px;
+height: 150px;
+}
+
+.artist-name {
+font-size: 20px;
+}
+
+.context {
+flex-direction: column;
+align-items: center;
+}
+
+.context-item {
+width: 90%;
+max-width: 400px;
+}
+
+.btn {
+width: 100px;
+font-size: 14px;
+}
+}
+
+@media (max-width: 768px) {
+.card {
+width: 100%;
+max-width: 280px;
+}
+
+.content {
+margin: 10px;
+gap: 20px;
+}
+
+.context {
+padding: 10px;
+gap: 10px;
+}
+
+.artimage {
+width: 120px;
+height: 120px;
+}
+
+.artist-name {
+font-size: 18px;
+}
+
+.context-item {
+width: 100%;
+padding: 10px;
+font-size: 14px;
+}
+
+.btn {
+width: 90px;
+font-size: 12px;
+}
+}
+
+@media (max-width: 480px) {
+.card {
+width: 100%;
+max-width: 260px;
+}
+
+.content {
+padding: 5px;
+}
+
+.context {
+font-size: 12px;
+padding: 5px;
+}
+
+.artimage {
+width: 100px;
+height: 100px;
+}
+
+.artist-name {
+font-size: 16px;
+}
+
+.context-item {
+width: 100%;
+padding: 5px;
+font-size: 12px;
+}
+
+.btn {
+width: 80px;
+font-size: 10px;
+}
+}
