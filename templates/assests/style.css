@@ -238,3 +238,69 @@ width: 80px;
 font-size: 10px;
 }
 }
+
+/* Style for the <details> element */
+details {
+    position: relative;
+    display: inline-block;
+    width: 200px;
+}
+
+.select summary {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 2px;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Hide the default checkbox */
+input[type="checkbox"] {
+    display: none;
+}
+
+/* Style for the dropdown content */
+details[open] .dropdown-content {
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 2px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 5px;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+}
+
+/* Style for items in the dropdown */
+.dropdown-content label {
+    display: block;
+    padding: 1px;
+    cursor: pointer;
+}
+
+/* Change background color on hover */
+.dropdown-content label:hover {
+    background-color: #e0e0e0;
+}
+
+/* Style for selected item */
+.dropdown-content input[type="checkbox"]:checked + label {
+    background-color: #d0d0d0;
+}
+
+/* Add an arrow to indicate dropdown */
+.select summary::after {
+    content: '▼';
+    font-size: 0.8em;
+    margin-left: 10px;
+}
+
+.select details[open] summary::after {
+    content: '▲';
+} 

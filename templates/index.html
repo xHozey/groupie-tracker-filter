@@ -11,73 +11,102 @@
 </head>
 
 <body>
-    
+
     <form action="/result" method="POST" class="form-filter">
-        <details>
-            <summary>Show Filters</summary>
-            <div class="filter">
-                <div class="creation-date">
-                    <label for="creation-date-range">Creation Date:</label>
-                    <input type="range" id="creation-date-range" min="1957" max="2024" value="0"
-                        oninput="document.getElementById('rangeValue').innerText = this.value" name="CreationDate">
-                    <p>CreationDate: <span id="rangeValue"></span></p>
-                </div>
-                <div class="first-album">
-                    <label for="first-album">First Album:</label>
-                    <input type="date" id="first-album" name="first-album">
-                </div>
-                <div class="members">
-                    <p>Select members number:</p>
-                    <label><input type="checkbox" name="members" value="1"> 1</label>
-                    <label><input type="checkbox" name="members" value="2"> 2</label>
-                    <label><input type="checkbox" name="members" value="3"> 3</label>
-                    <label><input type="checkbox" name="members" value="4"> 4</label>
-                    <label><input type="checkbox" name="members" value="5"> 5</label>
-                    <label><input type="checkbox" name="members" value="6"> 6</label>
-                    <label><input type="checkbox" name="members" value="7"> 7</label>
-                </div>
-                <div class="country-selection">
-                    <label for="countries">Select a country:</label>
-                    <select id="countries" name="countries">
-                        <option value="" selected disabled>Select country:</option>
-                        <option value="usa">usa</option>
-                        <option value="japan">japan</option>
-                        <option value="new_zealand">new_zealand</option>
-                        <option value="mexico">mexico</option>
-                        <option value="french_polynesia">french_polynesia</option>
-                        <option value="new_caledonia">new_caledonia</option>
-                        <option value="uk">uk</option>
-                        <option value="switzerland">switzerland</option>
-                        <option value="france">france</option>
-                        <option value="slovakia">slovakia</option>
-                        <option value="hungary">hungary</option>
-                        <option value="belarus">belarus</option>
-                        <option value="brazil">brazil</option>
-                        <option value="argentina">argentina</option>
-                        <option value="colombia">colombia</option>
-                        <option value="chile">chile</option>
-                        <option value="peru">peru</option>
-                        <option value="denmark">denmark</option>
-                        <option value="belgium">belgium</option>
-                        <option value="spain">spain</option>
-                        <option value="germany">germany</option>
-                        <option value="netherlands">netherlands</option>
-                        <option value="italy">italy</option>
-                        <option value="poland">poland</option>
-                        <option value="austria">austria</option>
-                        <option value="czechia">czechia</option>
-                        <option value="china">china</option>
-                        <option value="thailand">thailand</option>
-                        <option value="taiwan">taiwan</option>
-                        <option value="south_korea">south_korea</option>
-                        <option value="united_arab_emirates">united_arab_emirates</option>
-                        <option value="canada">canada</option>
-                        <option value="philippines">philippines</option>
-                    </select>
-                </div>
-                <button type="submit">Filter</button>
+
+        <summary>Show Filters</summary>
+        <div class="filter">
+            <div class="creation-date">
+                <label for="year">Creation Date Year:</label>
+                <input type="number" id="year" name="year" min="1957" max="2024" step="1" placeholder="1957">
+                <input type="number" id="year-max" name="year" min="1957" max="2024" step="1" placeholder="2024">
             </div>
-        </details>
+            <div class="first-album">
+                <label for="first-album">First Album:</label>
+                <input type="date" id="first-album" name="first-album">
+                <input type="date" id="first-album" name="first-album">
+            </div>
+            <div class="members">
+                <label for="nb-meber">Select members:</label>
+                <input type="number" id="nb-meber" name="nb-meber" min="1" max="8" step="1" placeholder="min">
+                <input type="number" id="nb-meber" name="nb-meber" min="1" max="8" step="1" placeholder="max">
+            </div>
+            <div class="select">
+                <details>
+                    <summary>Country</summary>
+                    <div class="dropdown-content">
+                        <input type="checkbox" id="usa">
+                        <label for="usa">usa</label>
+                        <input type="checkbox" id="japan">
+                        <label for="japan">japan</label>
+                        <input type="checkbox" id="new_zealand">
+                        <label for="new_zealand">new_zealand</label>
+                        <input type="checkbox" id="mexico">
+                        <label for="mexico">mexico</label>
+                        <input type="checkbox" id="french_polynesia">
+                        <label for="french_polynesia">french_polynesia</label>
+                        <input type="checkbox" id="new_caledonia">
+                        <label for="new_caledonia">new_caledonia</label>
+                        <input type="checkbox" id="uk">
+                        <label for="uk">uk</label>
+                        <input type="checkbox" id="switzerland">
+                        <label for="switzerland">switzerland</label>
+                        <input type="checkbox" id="france">
+                        <label for="france">france</label>
+                        <input type="checkbox" id="slovakia">
+                        <label for="slovakia">slovakia</label>
+                        <input type="checkbox" id="hungary">
+                        <label for="hungary">hungary</label>
+                        <input type="checkbox" id="belarus">
+                        <label for="belarus">belarus</label>
+                        <input type="checkbox" id="brazil">
+                        <label for="brazil">brazil</label>
+                        <input type="checkbox" id="argentina">
+                        <label for="argentina">argentina</label>
+                        <input type="checkbox" id="colombia">
+                        <label for="colombia">colombia</label>
+                        <input type="checkbox" id="chile">
+                        <label for="chile">chile</label>
+                        <input type="checkbox" id="peru">
+                        <label for="peru">peru</label>
+                        <input type="checkbox" id="denmark">
+                        <label for="denmark">denmark</label>
+                        <input type="checkbox" id="belgium">
+                        <label for="belgium">belgium</label>
+                        <input type="checkbox" id="spain">
+                        <label for="spain">spain</label>
+                        <input type="checkbox" id="germany">
+                        <label for="germany">germany</label>
+                        <input type="checkbox" id="netherlands">
+                        <label for="netherlands">netherlands</label>
+                        <input type="checkbox" id="italy">
+                        <label for="italy">italy</label>
+                        <input type="checkbox" id="poland">
+                        <label for="poland">poland</label>
+                        <input type="checkbox" id="austria">
+                        <label for="austria">austria</label>
+                        <input type="checkbox" id="czechia">
+                        <label for="czechia">czechia</label>
+                        <input type="checkbox" id="china">
+                        <label for="china">china</label>
+                        <input type="checkbox" id="thailand">
+                        <label for="thailand">thailand</label>
+                        <input type="checkbox" id="taiwan">
+                        <label for="taiwan">taiwan</label>
+                        <input type="checkbox" id="south_korea">
+                        <label for="south_korea">south_korea</label>
+                        <input type="checkbox" id="united_arab_emirates">
+                        <label for="united_arab_emirates">united_arab_emirates</label>
+                        <input type="checkbox" id="canada">
+                        <label for="canada">canada</label>
+                        <input type="checkbox" id="philippines">
+                        <label for="philippines">philippines</label>
+                    </div>
+                </details>
+            </div>
+            <button type="submit">Filter</button>
+        </div>
+
     </form>
 
     <div class="container">
@@ -93,8 +122,7 @@
         </div>
         {{end}}
     </div>
-
-
+    <style></style>
 </body>
 
 </html>
