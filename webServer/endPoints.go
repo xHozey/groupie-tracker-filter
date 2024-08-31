@@ -58,7 +58,6 @@ func ArtistInfo(w http.ResponseWriter, r *http.Request) {
 }
 
 func Filter(w http.ResponseWriter, r *http.Request) {
-	var date string
 	err := r.ParseForm()
 	if err != nil {
 		http.Error(w, "Unable to parse form", http.StatusBadRequest)
@@ -66,15 +65,15 @@ func Filter(w http.ResponseWriter, r *http.Request) {
 	}
 	members := r.Form["members"]
 	country := r.FormValue("countries")
-	cd, _ := strconv.Atoi(r.FormValue("CreationDate"))
+	cd, _ := strconv.Atoi(r.FormValue("year1"))
+	cd2, _ := strconv.Atoi(r.FormValue("year2"))
+	cdR := getCdRange(cd, cd2)
 	fa := r.FormValue("first-album")
-	if fa != "" {
-		date = spltdate(fa)
-	}
+
 	tmpl, errtpl := template.ParseFiles("templates/result.html")
 	if errtpl != nil {
 		log.Fatal(errtpl)
 	}
-	filtredData := filterData(members, cd, date, country)
+	filtredData := filterData(members, cdR, fa, country)
 	tmpl.Execute(w, filtredData)
 }

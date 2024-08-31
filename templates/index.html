@@ -17,14 +17,15 @@
             <summary>Show Filters</summary>
             <div class="filter">
                 <div class="creation-date">
-                    <label for="creation-date-range">Creation Date:</label>
-                    <input type="range" id="creation-date-range" min="1957" max="2024" value="0"
-                        oninput="document.getElementById('rangeValue').innerText = this.value" name="CreationDate">
-                    <p>CreationDate: <span id="rangeValue"></span></p>
+                    <label for="creation-date">Creation date:</label>
+                    <input type="number" id="year" name="year1" min="1957" max="2024" step="1" placeholder="1958">
+                    <input type="number" id="year-max" name="year2" min="1957" max="2024" step="1" placeholder="2024">
                 </div>
                 <div class="first-album">
-                    <label for="first-album">First Album:</label>
-                    <input type="date" id="first-album" name="first-album">
+                    <label for="first-album-range">First Album:</label>
+                    <input type="range" id="first-album-range" min="1957" max="2024" value="0"
+                        oninput="document.getElementById('rangeValue').innerText = this.value" name="first-album">
+                    <p>year: <span id="rangeValue"></span></p>
                 </div>
                 <div class="members">
                     <p>Select members number:</p>
@@ -38,42 +39,156 @@
                 </div>
                 <div class="country-selection">
                     <label for="countries">Select a country:</label>
-                    <select id="countries" name="countries">
-                        <option value="" selected disabled>Select country:</option>
-                        <option value="usa">usa</option>
-                        <option value="japan">japan</option>
-                        <option value="new_zealand">new_zealand</option>
-                        <option value="mexico">mexico</option>
-                        <option value="french_polynesia">french_polynesia</option>
-                        <option value="new_caledonia">new_caledonia</option>
-                        <option value="uk">uk</option>
-                        <option value="switzerland">switzerland</option>
-                        <option value="france">france</option>
-                        <option value="slovakia">slovakia</option>
-                        <option value="hungary">hungary</option>
-                        <option value="belarus">belarus</option>
-                        <option value="brazil">brazil</option>
-                        <option value="argentina">argentina</option>
-                        <option value="colombia">colombia</option>
-                        <option value="chile">chile</option>
-                        <option value="peru">peru</option>
-                        <option value="denmark">denmark</option>
-                        <option value="belgium">belgium</option>
-                        <option value="spain">spain</option>
-                        <option value="germany">germany</option>
-                        <option value="netherlands">netherlands</option>
-                        <option value="italy">italy</option>
-                        <option value="poland">poland</option>
-                        <option value="austria">austria</option>
-                        <option value="czechia">czechia</option>
-                        <option value="china">china</option>
-                        <option value="thailand">thailand</option>
-                        <option value="taiwan">taiwan</option>
-                        <option value="south_korea">south_korea</option>
-                        <option value="united_arab_emirates">united_arab_emirates</option>
-                        <option value="canada">canada</option>
-                        <option value="philippines">philippines</option>
-                    </select>
+                      <select id="countries" name="countries">
+                         <option value="" disabled selected>Select</option>
+                          <option value="north_carolina-usa">North Carolina, USA</option>
+                          <option value="georgia-usa">Georgia, USA</option>
+                          <option value="los_angeles-usa">Los Angeles, USA</option>
+                          <option value="saitama-japan">Saitama, Japan</option>
+                          <option value="osaka-japan">Osaka, Japan</option>
+                          <option value="nagoya-japan">Nagoya, Japan</option>
+                          <option value="penrose-new_zealand">Penrose, New Zealand</option>
+                          <option value="dunedin-new_zealand">Dunedin, New Zealand</option>
+                          <option value="playa_del_carmen-mexico">Playa del Carmen, Mexico</option>
+                          <option value="papeete-french_polynesia">Papeete, French Polynesia</option>
+                          <option value="noumea-new_caledonia">Noumea, New Caledonia</option>
+                          <option value="london-uk">London, UK</option>
+                          <option value="lausanne-switzerland">Lausanne, Switzerland</option>
+                          <option value="lyon-france">Lyon, France</option>
+                          <option value="victoria-australia">Victoria, Australia</option>
+                          <option value="new_south_wales-australia">New South Wales, Australia</option>
+                          <option value="queensland-australia">Queensland, Australia</option>
+                          <option value="auckland-new_zealand">Auckland, New Zealand</option>
+                          <option value="yogyakarta-indonesia">Yogyakarta, Indonesia</option>
+                          <option value="bratislava-slovakia">Bratislava, Slovakia</option>
+                          <option value="budapest-hungary">Budapest, Hungary</option>
+                          <option value="minsk-belarus">Minsk, Belarus</option>
+                          <option value="california-usa">California, USA</option>
+                          <option value="nevada-usa">Nevada, USA</option>
+                          <option value="sao_paulo-brazil">Sao Paulo, Brazil</option>
+                          <option value="san_isidro-argentina">San Isidro, Argentina</option>
+                          <option value="arizona-usa">Arizona, USA</option>
+                          <option value="texas-usa">Texas, USA</option>
+                          <option value="stockholm-sweden">Stockholm, Sweden</option>
+                          <option value="werchter-belgium">Werchter, Belgium</option>
+                          <option value="lisbon-portugal">Lisbon, Portugal</option>
+                          <option value="bilbao-spain">Bilbao, Spain</option>
+                          <option value="bogota-colombia">Bogota, Colombia</option>
+                          <option value="new_york-usa">New York, USA</option>
+                          <option value="dusseldorf-germany">Dusseldorf, Germany</option>
+                          <option value="aarhus-denmark">Aarhus, Denmark</option>
+                          <option value="manchester-uk">Manchester, UK</option>
+                          <option value="frankfurt-germany">Frankfurt, Germany</option>
+                          <option value="berlin-germany">Berlin, Germany</option>
+                          <option value="copenhagen-denmark">Copenhagen, Denmark</option>
+                          <option value="doha-qatar">Doha, Qatar</option>
+                          <option value="minnesota-usa">Minnesota, USA</option>
+                          <option value="illinois-usa">Illinois, USA</option>
+                          <option value="mumbai-india">Mumbai, India</option>
+                          <option value="abu_dhabi-united_arab_emirates">Abu Dhabi, United Arab Emirates</option>
+                          <option value="pennsylvania-usa">Pennsylvania, USA</option>
+                          <option value="westcliff_on_sea-uk">Westcliff-on-Sea, UK</option>
+                          <option value="merkers-germany">Merkers, Germany</option>
+                          <option value="gothenburg-sweden">Gothenburg, Sweden</option>
+                          <option value="florida-usa">Florida, USA</option>
+                          <option value="south_carolina-usa">South Carolina, USA</option>
+                          <option value="pagney_derriere_barine-france">Pagney-Derrière-Barine, France</option>
+                          <option value="hamburg-germany">Hamburg, Germany</option>
+                          <option value="boulogne_billancourt-france">Boulogne-Billancourt, France</option>
+                          <option value="nimes-france">Nimes, France</option>
+                          <option value="sion-switzerland">Sion, Switzerland</option>
+                          <option value="ostrava-czechia">Ostrava, Czechia</option>
+                          <option value="klagenfurt-austria">Klagenfurt, Austria</option>
+                          <option value="freyming_merlebach-france">Freyming-Merlebach, France</option>
+                          <option value="zaragoza-spain">Zaragoza, Spain</option>
+                          <option value="madrid-spain">Madrid, Spain</option>
+                          <option value="barcelona-spain">Barcelona, Spain</option>
+                          <option value="rio_de_janeiro-brazil">Rio de Janeiro, Brazil</option>
+                          <option value="recife-brazil">Recife, Brazil</option>
+                          <option value="leipzig-germany">Leipzig, Germany</option>
+                          <option value="salem-germany">Salem, Germany</option>
+                          <option value="monchengladbach-germany">Monchengladbach, Germany</option>
+                          <option value="cuxhaven-germany">Cuxhaven, Germany</option>
+                          <option value="skanderborg-denmark">Skanderborg, Denmark</option>
+                          <option value="amsterdam-netherlands">Amsterdam, Netherlands</option>
+                          <option value="burriana-spain">Burriana, Spain</option>
+                          <option value="oulu-finland">Oulu, Finland</option>
+                          <option value="napoca-romania">Napoca, Romania</option>
+                          <option value="riyadh-saudi_arabia">Riyadh, Saudi Arabia</option>
+                          <option value="canton-usa">Canton, USA</option>
+                          <option value="quebec-canada">Quebec, Canada</option>
+                          <option value="las_vegas-usa">Las Vegas, USA</option>
+                          <option value="monterrey-mexico">Monterrey, Mexico</option>
+                          <option value="del_mar-usa">Del Mar, USA</option>
+                          <option value="west_melbourne-australia">West Melbourne, Australia</option>
+                          <option value="missouri-usa">Missouri, USA</option>
+                          <option value="chicago-usa">Chicago, USA</option>
+                          <option value="birmingham-uk">Birmingham, UK</option>
+                          <option value="sydney-australia">Sydney, Australia</option>
+                          <option value="madison-usa">Madison, USA</option>
+                          <option value="toronto-canada">Toronto, Canada</option>
+                          <option value="cleveland-usa">Cleveland, USA</option>
+                          <option value="utah-usa">Utah, USA</option>
+                          <option value="glasgow-uk">Glasgow, UK</option>
+                          <option value="cardiff-uk">Cardiff, UK</option>
+                          <option value="aberdeen-uk">Aberdeen, UK</option>
+                          <option value="paris-france">Paris, France</option>
+                          <option value="warsaw-poland">Warsaw, Poland</option>
+                          <option value="milan-italy">Milan, Italy</option>
+                          <option value="michigan-usa">Michigan, USA</option>
+                          <option value="new_hampshire-usa">New Hampshire, USA</option>
+                          <option value="sochaux-france">Sochaux, France</option>
+                          <option value="eindhoven-netherlands">Eindhoven, Netherlands</option>
+                          <option value="oslo-norway">Oslo, Norway</option>
+                          <option value="jakarta-indonesia">Jakarta, Indonesia</option>
+                          <option value="huizhou-china">Huizhou, China</option>
+                          <option value="changzhou-china">Changzhou, China</option>
+                          <option value="hong_kong-china">Hong Kong, China</option>
+                          <option value="sanya-china">Sanya, China</option>
+                          <option value="aalborg-denmark">Aalborg, Denmark</option>
+                          <option value="seattle-usa">Seattle, USA</option>
+                          <option value="omaha-usa">Omaha, USA</option>
+                          <option value="kansas_city-usa">Kansas City, USA</option>
+                          <option value="st_louis-usa">St. Louis, USA</option>
+                          <option value="indianapolis-usa">Indianapolis, USA</option>
+                          <option value="rosemont-usa">Rosemont, USA</option>
+                          <option value="grand_rapids-usa">Grand Rapids, USA</option>
+                          <option value="montreal-canada">Montreal, Canada</option>
+                          <option value="newark-usa">Newark, USA</option>
+                          <option value="uniondale-usa">Uniondale, USA</option>
+                          <option value="hershey-usa">Hershey, USA</option>
+                          <option value="columbia-usa">Columbia, USA</option>
+                          <option value="santiago-chile">Santiago, Chile</option>
+                          <option value="houston-usa">Houston, USA</option>
+                          <option value="atlanta-usa">Atlanta, USA</option>
+                          <option value="new_orleans-usa">New Orleans, USA</option>
+                          <option value="frauenfeld-switzerland">Frauenfeld, Switzerland</option>
+                          <option value="turku-finland">Turku, Finland</option>
+                          <option value="brooklyn-usa">Brooklyn, USA</option>
+                          <option value="oakland-usa">Oakland, USA</option>
+                          <option value="charlotte-usa">Charlotte, USA</option>
+                          <option value="inglewood-usa">Inglewood, USA</option>
+                          <option value="windsor-canada">Windsor, Canada</option>
+                          <option value="cincinnati-usa">Cincinnati, USA</option>
+                          <option value="anaheim-usa">Anaheim, USA</option>
+                          <option value="manila-philippines">Manila, Philippines</option>
+                          <option value="brisbane-australia">Brisbane, Australia</option>
+                          <option value="melbourne-australia">Melbourne, Australia</option>
+                          <option value="lima-peru">Lima, Peru</option>
+                          <option value="groningen-netherlands">Groningen, Netherlands</option>
+                          <option value="antwerp-belgium">Antwerp, Belgium</option>
+                          <option value="vienna-austria">Vienna, Austria</option>
+                          <option value="mexico_city-mexico">Mexico City, Mexico</option>
+                          <option value="pico_rivera-usa">Pico Rivera, USA</option>
+                          <option value="boston-usa">Boston, USA</option>
+                          <option value="berwyn-usa">Berwyn, USA</option>
+                          <option value="dallas-usa">Dallas, USA</option>
+                          <option value="brixton-uk">Brixton, UK</option>
+                          <option value="rotselaar-belgium">Rotselaar, Belgium</option>
+                          <option value="alabama-usa">Alabama, USA</option>
+                          <option value="massachusetts-usa">Massachusetts, USA</option>
+                      </select>
+                      
                 </div>
                 <button type="submit">Filter</button>
             </div>
