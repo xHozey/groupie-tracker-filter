@@ -1,8 +1,11 @@
 package groupie
 
 import (
+	"html/template"
 	"log"
 	"net/http"
+	"strconv"
+	"strings"
 )
 
 func Index(w http.ResponseWriter, r *http.Request) {
@@ -60,7 +63,7 @@ func Filter(w http.ResponseWriter, r *http.Request) {
 	country := r.Form["countries"]
 	tmpl := Static.result
 	sanitized := sanitiseinput(creatin_date, first_album, members, country)
-	filtredData := filterData(sanitized)
+	filtredData := filterData(sanitized, Artistians)
 	tmpl.Execute(w, filtredData)
 }
 
@@ -107,4 +110,58 @@ func sanitiseinput(cd, fa, members, country []string) fiters {
 		return ans
 	}(country)
 	return f
+}
+
+func Search(w http.ResponseWriter, r *http.Request) {
+	var result []Artist
+	search := r.FormValue("search")
+	seen := make([]bool, 53)
+
+	for i, artist := range Artistians {
+		for _, member := range artist.Members {
+			if strings.Contains(strings.ToLower(artist.Name), search) {
+				if !seen[artist.Id] {
+					result = append(result, artist)
+					seen[artist.Id] = true
+				}
+			}
+			if strings.Contains(strings.ToLower(strconv.Itoa(artist.CreationDate)), search) {
+				if !seen[artist.Id] {
+					result = append(result, artist)
+					seen[artist.Id] = true
+				}
+			}
+			if strings.Contains(strings.ToLower(artist.FirstAlbum), search) {
+				if !seen[artist.Id] {
+					result = append(result, artist)
+					seen[artist.Id] = true
+				}
+			}
+			if strings.Contains(strings.ToLower(member), search) {
+				if !seen[artist.Id] {
+					result = append(result, artist)
+					seen[artist.Id] = true
+				}
+			}
+		}
+		for _, location := range loc.Index[i].Location {
+			if strings.Contains(strings.ToLower(location), search) {
+				if !seen[artist.Id] {
+					result = append(result, artist)
+					seen[artist.Id] = true
+				}
+			}
+		}
+	}
+	f := sanitiseinput(r.Form["year"], r.Form["first-album"], r.Form["members"], r.Form["countries"])
+	result = filterData(f, result)
+	tml, err := template.ParseFiles("templates/result.html")
+	if err != nil {
+		log.Fatal(err)
+	}
+	tml.Execute(w, result)
+}
+
+func filter(artists []Artist, r *http.Request) []Artist {
+
 }

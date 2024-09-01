@@ -6,10 +6,10 @@ import (
 	"strings"
 )
 
-func filterData(f fiters) []Artist {
-	var g = make([]bool, len(Artistians))
+func filterData(f fiters, data []Artist) []Artist {
+	var g = make([]bool, len(data))
 	var filtredArtists []Artist
-	for I, v := range Artistians {
+	for I, v := range data {
 		g[I] = true
 		if v.CreationDate < atoi(f.cd[0]) || v.CreationDate > atoi(f.cd[1]) {
 			g[I] = false
@@ -42,7 +42,7 @@ func filterData(f fiters) []Artist {
 	}
 	for i, j := range g {
 		if j {
-			filtredArtists = append(filtredArtists, Artistians[i])
+			filtredArtists = append(filtredArtists, data[i])
 		}
 	}
 	return filtredArtists
