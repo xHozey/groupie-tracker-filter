@@ -21,7 +21,7 @@ func filterData(f fiters) []Artist {
 			continue
 		}
 
-		if f.members[0] < string(len(v.Members)) && string(len(v.Members)) > f.members[1] {
+		if atoi(f.members[0]) < len(v.Members) && len(v.Members) > atoi(f.members[1]) {
 			g[I] = false
 			continue
 		}
