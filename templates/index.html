@@ -11,6 +11,31 @@
 </head>
 
 <body>
+    <form action="/search">
+
+        <div class="search-bar">
+            <input list="Artist" id="search" name="search" placeholder=" search..." />
+            <datalist id="Artist">
+                {{range .Art}}
+                <option value="{{.Name}}">{{.Name}} -Artist/Band</option>
+                <option value="{{.CreationDate}}">{{.CreationDate}}
+                    -Creation date</option>
+                <option value="{{.FirstAlbum}}">{{.FirstAlbum}} -First
+                    album</option>
+                {{range .Members}}
+                <option value="{{.}}">{{.}} -Member
+                <option>
+                    {{end}}
+                    {{end}}
+                    {{range .Location.Index}}
+                    {{range .Location}}
+                <option value="{{.}}">{{.}} -Location</option>
+                {{end}}
+                {{end}}
+            </datalist>
+            <button type="submit" class="search-btn">search</button>
+        </div>
+    </form>
     
     <form action="/result" method="POST" class="form-filter">
         <details>
@@ -22,10 +47,9 @@
                     <input type="number" id="year-max" name="year2" min="1957" max="2024" step="1" placeholder="2024">
                 </div>
                 <div class="first-album">
-                    <label for="first-album-range">First Album:</label>
-                    <input type="range" id="first-album-range" min="1957" max="2024" value="0"
-                        oninput="document.getElementById('rangeValue').innerText = this.value" name="first-album">
-                    <p>year: <span id="rangeValue"></span></p>
+                    <label for="first-album">First Album:</label>
+                    <input type="number" id="year" name="faMin" min="1957" max="2024" step="1" placeholder="1958">
+                    <input type="number" id="year-max" name="faMax" min="1957" max="2024" step="1" placeholder="2024">
                 </div>
                 <div class="members">
                     <p>Select members number:</p>
@@ -196,7 +220,7 @@
     </form>
 
     <div class="container">
-        {{range .}}
+        {{range .Art}}
         <div class="card">
             <img src="{{.Image}}" alt="{{.Name}}">
             <h3 class="card-name">{{.Name}}</h3>

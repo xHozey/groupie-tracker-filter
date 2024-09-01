@@ -7,30 +7,36 @@ import (
 	"sync"
 )
 
-var (
-	Artistians []Artist
-	loc Loc
-)
+var FilterSearch Final
 
-func fetchIndex() {
-	resp, err := http.Get("https://groupietrackers.herokuapp.com/api/artists")
+func FetchIndex() {
+	var wg sync.WaitGroup
+	var artistians []Artist
+	var location LocationIndex
+	var dates DateIndex
+	var relation RelationIndex
+	wg.Add(4)
+	go fetchAllData(&artistians, "artists", &wg)
+	go fetchAllData(&location, "locations", &wg)
+	go fetchAllData(&dates, "dates", &wg)
+	go fetchAllData(&relation, "relation", &wg)
+	wg.Wait()
+
+	FilterSearch = Final{artistians, location, dates, relation}
+
+}
+
+func fetchAllData(dataVar interface{}, path string, wg *sync.WaitGroup) {
+	defer wg.Done()
+	resp, err := http.Get("https://groupietrackers.herokuapp.com/api/" + path)
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer resp.Body.Close()
-	err1 := json.NewDecoder(resp.Body).Decode(&Artistians)
-	if err1 != nil {
-		log.Fatal(err)
-	}
 
-	loca, eror := http.Get("https://groupietrackers.herokuapp.com/api/locations")
-	if eror != nil {
-		log.Fatal(eror)
-	}
-	defer loca.Body.Close()
-	err = json.NewDecoder(loca.Body).Decode(&loc)
+	err = json.NewDecoder(resp.Body).Decode(&dataVar)
 	if err != nil {
-		log.Fatalf("Failed to decode JSON: %v", err)
+		log.Fatal(err)
 	}
 }
 

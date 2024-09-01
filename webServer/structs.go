@@ -7,6 +7,13 @@ type Result struct {
 	DateLocation Relation
 }
 
+type Final struct {
+	Art          []Artist
+	Location     LocationIndex
+	Date         DateIndex
+	DateLocation RelationIndex
+}
+
 type Artist struct {
 	Id           int      `json:"id"`
 	Image        string   `json:"image"`
@@ -16,8 +23,16 @@ type Artist struct {
 	FirstAlbum   string   `json:"firstAlbum"`
 }
 
-type Loc struct {
+type LocationIndex struct {
 	Index []Locations `json:"index"`
+}
+
+type DateIndex struct {
+	Index []Dates `json:"index"`
+}
+
+type RelationIndex struct {
+	Index []Relation `json:"index"`
 }
 
 type Locations struct {
