@@ -23,9 +23,12 @@ func Index(w http.ResponseWriter, r *http.Request) {
 			Artistians[i].Image = "https://media.istockphoto.com/id/157030584/vector/thumb-up-emoticon.jpg?s=612x612&w=0&k=20&c=GGl4NM_6_BzvJxLSl7uCDF4Vlo_zHGZVmmqOBIewgKg="
 		}
 	}
-	err := tpl.Execute(w, Artistians)
+	err := tpl.Execute(w, struct {
+		Artists []Artist
+		Loc     []Locations
+	}{Artistians, loc.Index})
 	if err != nil {
-		log.Fatal(err, "endPoints")
+		log.Print(err, "endPoints")
 	}
 }
 
@@ -160,8 +163,4 @@ func Search(w http.ResponseWriter, r *http.Request) {
 		log.Fatal(err)
 	}
 	tml.Execute(w, result)
-}
-
-func filter(artists []Artist, r *http.Request) []Artist {
-
 }
