@@ -67,14 +67,14 @@ func Filter(w http.ResponseWriter, r *http.Request) {
 	cdMax, _ := strconv.Atoi(r.FormValue("year2"))
 	faMin := r.FormValue("faMin")
 	faMax := r.FormValue("faMax")
-	cdR := getRangeInt(cdMin, cdMax)
+
 	faR := getRangeStr(faMin, faMax)
 
 	tmpl, errtpl := template.ParseFiles("templates/result.html")
 	if errtpl != nil {
 		log.Fatal(errtpl)
 	}
-	filtredData := filterData(members, cdR, faR, country)
+	filtredData := filterData(members, cdMin, cdMax, faR, country)
 	tmpl.Execute(w, filtredData)
 }
 
