@@ -18,9 +18,7 @@
             <h3 class="card-name">{{.Name}}</h3>
             <p>Creation Date: {{.CreationDate}}</p>
             <p>First Album: {{.FirstAlbum}}</p>
-            <form action="/artist" method="get">
-                <button value="{{.Id}}" name="Id">Read more</button>
-            </form>
+            <a href="/artist?Id={{.Id}}"><button class="btn">Go back</button></a>
         </div>
         {{end}}
     </div>

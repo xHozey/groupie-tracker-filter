@@ -13,18 +13,17 @@
 <body>
 
     <form action="/result" method="POST" class="form-filter">
-
         <summary>Show Filters</summary>
         <div class="filter">
             <div class="creation-date">
                 <label for="year">Creation Date Year:</label>
                 <input type="number" id="year" name="year" min="1957" max="2024" step="1" placeholder="1957">
-                <input type="number" id="year-max" name="year" min="1957" max="2024" step="1" placeholder="2024">
+                <input type="number" id="year" name="year" min="1957" max="2024" step="1" placeholder="2024">
             </div>
             <div class="first-album">
                 <label for="first-album">First Album:</label>
-                <input type="date" id="first-album" name="first-album">
-                <input type="date" id="first-album" name="first-album">
+                <input type="date" id="first-album" name="first-album" min="1967-08-12" max="2018-11-15">
+                <input type="date" id="first-album" name="first-album" min="1967-08-12" max="2018-11-15">
             </div>
             <div class="members">
                 <label for="nb-meber">Select members:</label>
@@ -36,72 +35,100 @@
                 <details>
                     <summary>Country</summary>
                     <div class="dropdown-content">
-                        <input type="checkbox" id="usa">
-                        <label for="usa">usa</label>
-                        <input type="checkbox" id="japan">
-                        <label for="japan">japan</label>
-                        <input type="checkbox" id="new_zealand">
-                        <label for="new_zealand">new_zealand</label>
-                        <input type="checkbox" id="mexico">
-                        <label for="mexico">mexico</label>
-                        <input type="checkbox" id="french_polynesia">
-                        <label for="french_polynesia">french_polynesia</label>
-                        <input type="checkbox" id="new_caledonia">
-                        <label for="new_caledonia">new_caledonia</label>
-                        <input type="checkbox" id="uk">
-                        <label for="uk">uk</label>
-                        <input type="checkbox" id="switzerland">
-                        <label for="switzerland">switzerland</label>
-                        <input type="checkbox" id="france">
-                        <label for="france">france</label>
-                        <input type="checkbox" id="slovakia">
-                        <label for="slovakia">slovakia</label>
-                        <input type="checkbox" id="hungary">
-                        <label for="hungary">hungary</label>
-                        <input type="checkbox" id="belarus">
-                        <label for="belarus">belarus</label>
-                        <input type="checkbox" id="brazil">
-                        <label for="brazil">brazil</label>
-                        <input type="checkbox" id="argentina">
+                        <input type="checkbox" name="countries" id="argentina" value="(argentina)">
                         <label for="argentina">argentina</label>
-                        <input type="checkbox" id="colombia">
-                        <label for="colombia">colombia</label>
-                        <input type="checkbox" id="chile">
-                        <label for="chile">chile</label>
-                        <input type="checkbox" id="peru">
-                        <label for="peru">peru</label>
-                        <input type="checkbox" id="denmark">
-                        <label for="denmark">denmark</label>
-                        <input type="checkbox" id="belgium">
-                        <label for="belgium">belgium</label>
-                        <input type="checkbox" id="spain">
-                        <label for="spain">spain</label>
-                        <input type="checkbox" id="germany">
-                        <label for="germany">germany</label>
-                        <input type="checkbox" id="netherlands">
-                        <label for="netherlands">netherlands</label>
-                        <input type="checkbox" id="italy">
-                        <label for="italy">italy</label>
-                        <input type="checkbox" id="poland">
-                        <label for="poland">poland</label>
-                        <input type="checkbox" id="austria">
+                        <input type="checkbox" name="countries" id="australia" value="(australia)">
+                        <label for="australia">australia</label>
+                        <input type="checkbox" name="countries" id="austria" value="(austria)">
                         <label for="austria">austria</label>
-                        <input type="checkbox" id="czechia">
-                        <label for="czechia">czechia</label>
-                        <input type="checkbox" id="china">
-                        <label for="china">china</label>
-                        <input type="checkbox" id="thailand">
-                        <label for="thailand">thailand</label>
-                        <input type="checkbox" id="taiwan">
-                        <label for="taiwan">taiwan</label>
-                        <input type="checkbox" id="south_korea">
-                        <label for="south_korea">south_korea</label>
-                        <input type="checkbox" id="united_arab_emirates">
-                        <label for="united_arab_emirates">united_arab_emirates</label>
-                        <input type="checkbox" id="canada">
+                        <input type="checkbox" name="countries" id="belarus" value="(belarus)">
+                        <label for="belarus">belarus</label>
+                        <input type="checkbox" name="countries" id="belgium" value="(belgium)">
+                        <label for="belgium">belgium</label>
+                        <input type="checkbox" name="countries" id="brazil" value="(brazil)">
+                        <label for="brazil">brazil</label>
+                        <input type="checkbox" name="countries" id="canada" value="(canada)">
                         <label for="canada">canada</label>
-                        <input type="checkbox" id="philippines">
+                        <input type="checkbox" name="countries" id="chile" value="(chile)">
+                        <label for="chile">chile</label>
+                        <input type="checkbox" name="countries" id="china" value="(china)">
+                        <label for="china">china</label>
+                        <input type="checkbox" name="countries" id="colombia" value="(colombia)">
+                        <label for="colombia">colombia</label>
+                        <input type="checkbox" name="countries" id="costa_rica" value="(costa_rica)">
+                        <label for="costa_rica">costa_rica</label>
+                        <input type="checkbox" name="countries" id="czechia" value="(czechia)">
+                        <label for="czechia">czechia</label>
+                        <input type="checkbox" name="countries" id="denmark" value="(denmark)">
+                        <label for="denmark">denmark</label>
+                        <input type="checkbox" name="countries" id="finland" value="(finland)">
+                        <label for="finland">finland</label>
+                        <input type="checkbox" name="countries" id="france" value="(france)">
+                        <label for="france">france</label>
+                        <input type="checkbox" name="countries" id="french_polynesia" value="(french_polynesia)">
+                        <label for="french_polynesia">french_polynesia</label>
+                        <input type="checkbox" name="countries" id="germany" value="(germany)">
+                        <label for="germany">germany</label>
+                        <input type="checkbox" name="countries" id="greece" value="(greece)">
+                        <label for="greece">greece</label>
+                        <input type="checkbox" name="countries" id="hungary" value="(hungary)">
+                        <label for="hungary">hungary</label>
+                        <input type="checkbox" name="countries" id="india" value="(india)">
+                        <label for="india">india</label>
+                        <input type="checkbox" name="countries" id="indonesia" value="(indonesia)">
+                        <label for="indonesia">indonesia</label>
+                        <input type="checkbox" name="countries" id="ireland" value="(ireland)">
+                        <label for="ireland">ireland</label>
+                        <input type="checkbox" name="countries" id="italy" value="(italy)">
+                        <label for="italy">italy</label>
+                        <input type="checkbox" name="countries" id="japan" value="(japan)">
+                        <label for="japan">japan</label>
+                        <input type="checkbox" name="countries" id="mexico" value="(mexico)">
+                        <label for="mexico">mexico</label>
+                        <input type="checkbox" name="countries" id="netherlands" value="(netherlands)">
+                        <label for="netherlands">netherlands</label>
+                        <input type="checkbox" name="countries" id="netherlands_antilles" value="(netherlands_antilles)">
+                        <label for="netherlands_antilles">netherlands_antilles</label>
+                        <input type="checkbox" name="countries" id="new_caledonia" value="(new_caledonia)">
+                        <label for="new_caledonia">new_caledonia</label>
+                        <input type="checkbox" name="countries" id="new_zealand" value="(new_zealand)">
+                        <label for="new_zealand">new_zealand</label>
+                        <input type="checkbox" name="countries" id="norway" value="(norway)">
+                        <label for="norway">norway</label>
+                        <input type="checkbox" name="countries" id="peru" value="(peru)">
+                        <label for="peru">peru</label>
+                        <input type="checkbox" name="countries" id="philippines" value="(philippines)">
                         <label for="philippines">philippines</label>
+                        <input type="checkbox" name="countries" id="poland" value="(poland)">
+                        <label for="poland">poland</label>
+                        <input type="checkbox" name="countries" id="portugal" value="(portugal)">
+                        <label for="portugal">portugal</label>
+                        <input type="checkbox" name="countries" id="qatar" value="(qatar)">
+                        <label for="qatar">qatar</label>
+                        <input type="checkbox" name="countries" id="romania" value="(romania)">
+                        <label for="romania">romania</label>
+                        <input type="checkbox" name="countries" id="saudi_arabia" value="(saudi_arabia)">
+                        <label for="saudi_arabia">saudi_arabia</label>
+                        <input type="checkbox" name="countries" id="slovakia" value="(slovakia)">
+                        <label for="slovakia">slovakia</label>
+                        <input type="checkbox" name="countries" id="south_korea" value="(south_korea)">
+                        <label for="south_korea">south_korea</label>
+                        <input type="checkbox" name="countries" id="spain" value="(spain)">
+                        <label for="spain">spain</label>
+                        <input type="checkbox" name="countries" id="sweden" value="(sweden)">
+                        <label for="sweden">sweden</label>
+                        <input type="checkbox" name="countries" id="switzerland" value="(switzerland)">
+                        <label for="switzerland">switzerland</label>
+                        <input type="checkbox" name="countries" id="taiwan" value="(taiwan)">
+                        <label for="taiwan">taiwan</label>
+                        <input type="checkbox" name="countries" id="thailand" value="(thailand)">
+                        <label for="thailand">thailand</label>
+                        <input type="checkbox" name="countries" id="uk" value="(uk)">
+                        <label for="uk">uk</label>
+                        <input type="checkbox" name="countries" id="united_arab_emirates" value="(united_arab_emirates)">
+                        <label for="united_arab_emirates">united_arab_emirates</label>
+                        <input type="checkbox" name="countries" id="usa" value="(usa)">
+                        <label for="usa">usa</label>                        
                     </div>
                 </details>
             </div>

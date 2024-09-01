@@ -13,5 +13,5 @@ func main() {
 	http.HandleFunc("/", web.Index)
 	http.HandleFunc("/artist", web.ArtistInfo)
 	http.HandleFunc("/result", web.Filter)
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Fatal(http.ListenAndServe(":8080", nil), "Listen and Serve")
 }

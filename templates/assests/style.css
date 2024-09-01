@@ -259,7 +259,7 @@ details {
 }
 
 /* Hide the default checkbox */
-input[type="checkbox"] {
+.select input[type="checkbox"] {
     display: none;
 }
 
