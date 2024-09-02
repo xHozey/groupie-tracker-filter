@@ -7,42 +7,35 @@ import (
 )
 
 func filterData(f fiters, data []Artist) []Artist {
-	var g = make([]bool, len(data))
 	var filtredArtists []Artist
-	for I, v := range data {
-		g[I] = true
+	g := true
+	for a, v := range data {
 		if v.CreationDate < atoi(f.cd[0]) || v.CreationDate > atoi(f.cd[1]) {
-			g[I] = false
 			continue
 		}
 
 		if f.fa[1] < date(v.FirstAlbum) || date(v.FirstAlbum) > f.fa[1] {
-			g[I] = false
 			continue
 		}
 
-		if atoi(f.members[0]) < len(v.Members) && len(v.Members) > atoi(f.members[1]) {
-			g[I] = false
+		if !f.members[len(v.Members)] {
 			continue
 		}
+		g = true
 		for _, c := range f.country {
-			t := loc.Index[I].Location
+			t := loc.Index[a].Location
 			for i, loc := range t {
 				if strings.HasSuffix(loc, c) {
 					break
 				}
 				if i == len(t)-1 {
-					g[I] = false
-					break
-					break
+					g = false
 				}
 			}
 
 		}
-	}
-	for i, j := range g {
-		if j {
-			filtredArtists = append(filtredArtists, data[i])
+		if g {
+			filtredArtists = append(filtredArtists, v)
 		}
 	}
 	return filtredArtists

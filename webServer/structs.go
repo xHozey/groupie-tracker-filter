@@ -60,7 +60,6 @@ type static struct {
 	Countries []string `json:"countries"`
 	Date      []string `json:"date"`
 	Fa        []string `json:"fa"`
-	Member    []string `json:"members"`
 	index     *template.Template
 	artist    *template.Template
 	result    *template.Template
@@ -69,9 +68,10 @@ type static struct {
 var Static static
 
 type fiters struct {
-	cd, fa, members [2]string
-	country         []string
-	err             error
+	cd, fa  [2]string
+	members []bool
+	country []string
+	err     error
 }
 
 type Result struct {
