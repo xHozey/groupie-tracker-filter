@@ -22,8 +22,6 @@ func Index(w http.ResponseWriter, r *http.Request) {
 		log.Fatal(err)
 	}
 
-	FilterSearch.Art[21].Image = "https://media.istockphoto.com/id/157030584/vector/thumb-up-emoticon.jpg?s=612x612&w=0&k=20&c=GGl4NM_6_BzvJxLSl7uCDF4Vlo_zHGZVmmqOBIewgKg="
-
 	err = tpl.Execute(w, FilterSearch)
 	if err != nil {
 		log.Fatal(err)
@@ -41,9 +39,7 @@ func ArtistInfo(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Bad Request", http.StatusBadRequest)
 		return
 	}
-	if data.Art.Id == 21 {
-		data.Art.Image = "https://media.istockphoto.com/id/157030584/vector/thumb-up-emoticon.jpg?s=612x612&w=0&k=20&c=GGl4NM_6_BzvJxLSl7uCDF4Vlo_zHGZVmmqOBIewgKg="
-	}
+
 	tmpl, errtpl := template.ParseFiles("templates/artist.html")
 	if errtpl != nil {
 		log.Fatal(errtpl)
@@ -80,7 +76,7 @@ func Filter(w http.ResponseWriter, r *http.Request) {
 
 func Search(w http.ResponseWriter, r *http.Request) {
 	var result Final
-	search := r.FormValue("search")
+	search := strings.ToLower(r.FormValue("search"))
 	seen := make([]bool, 53)
 
 	for _, artist := range FilterSearch.Art {

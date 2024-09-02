@@ -1,7 +1,6 @@
 package groupie
 
 import (
-	"fmt"
 	"strconv"
 	"strings"
 )
@@ -9,17 +8,16 @@ import (
 func filterData(m []string, cdMin int, cdMax int, fa []string, country string) Final {
 	mint := slicestrtoint(m)
 
-	firstFilter := filterCD(FilterSearch, cdMin, cdMax)
-	secondFilter := filterFA(firstFilter, fa)
-	thirdFilter := filterM(secondFilter, mint)
-	filtredResult := filterLocation(thirdFilter, country)
+	filterData := filterCD(FilterSearch, cdMin, cdMax)
+	filterData = filterFA(filterData, fa)
+	filterData = filterM(filterData, mint)
+	filterData = filterLocation(filterData, country)
 
-	return filtredResult
+	return filterData
 }
 
 func filterCD(data Final, min int, max int) Final {
 	if min == 0 && max == 0 {
-
 		return data
 	}
 	var result Final
@@ -28,7 +26,6 @@ func filterCD(data Final, min int, max int) Final {
 			result.Art = append(result.Art, artist)
 		}
 	}
-	fmt.Println(result)
 
 	return result
 }
@@ -36,17 +33,13 @@ func filterCD(data Final, min int, max int) Final {
 func filterFA(data Final, fa []string) Final {
 	var result Final
 	if len(fa) == 0 {
-
 		return data
 	}
 	for _, artist := range data.Art {
 		for _, val := range fa {
 			if strings.Contains(artist.FirstAlbum, val) {
-
 				result.Art = append(result.Art, artist)
-
 			}
-
 		}
 	}
 	return result
@@ -55,15 +48,12 @@ func filterFA(data Final, fa []string) Final {
 func filterM(data Final, member []int) Final {
 	var result Final
 	if len(member) == 0 {
-
 		return data
 	}
 	for _, artist := range data.Art {
 		for i := 0; i < len(member); i++ {
 			if len(artist.Members) == member[i] {
-
 				result.Art = append(result.Art, artist)
-
 			}
 		}
 	}
@@ -78,16 +68,13 @@ func filterLocation(data Final, c string) Final {
 	for _, artist := range data.Art {
 		for _, locationArtist := range FilterSearch.Location.Index {
 			for _, loc := range locationArtist.Location {
-
 				if strings.Contains(loc, c) {
 					if artist.Id == locationArtist.Id {
 						result.Art = append(result.Art, artist)
 					}
-
 				}
 			}
 		}
-
 	}
 	return result
 }
