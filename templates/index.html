@@ -35,73 +35,91 @@
             </datalist>
             <button type="submit" class="search-btn">search</button>
         </div>
-
-        <div>
-
-            <form action="/result" class="form-filter">
-                <details>
+            <details class="form-filter" >
                 <summary>Show Filters</summary>
-
-
-                    <div class="filter">
-
+                <div class="filter">
+                    <table>
                         <div class="creation-date">
-                            <label for="year">Creation Date Year:&emsp;</label>
-                            <input type="number" id="year" name="year" min="1957" max="2024" step="1"
-                                placeholder="1957">
-                            <input type="number" id="year" name="year" min="1957" max="2024" step="1"
-                                placeholder="2024">
-                        </div>
-                        <div class="first-album">
-                            <label for="first-album">First Album:&emsp;</label>
-                            <input type="number" id="first-album" name="first-album" min="1967" max="2018" step="1"
-                                placeholder="1967">
-                            <input type="number" id="first-album" name="first-album" min="1967" max="2018" step="1"
-                                placeholder="2018">
-                        </div>
-                        <div>
-                            <label>Number of Members :&emsp;</label>
-                            <label for="member1">1:</label>
-                            <input type="checkbox" id="member1" name="members" value="1">
+                            <tr>
+                                <td>
+                                    <label for="year">Creation Date Year :&emsp;</label>
 
-                            <label for="member2">2:</label>
-                            <input type="checkbox" id="member2" name="members" value="2">
+                                </td>
+                                <td>
+                                    <input type="number" id="year" name="year" min="1957" max="2024" step="1"
+                                        placeholder="1957">
+                                    <input type="number" id="year" name="year" min="1957" max="2024" step="1"
+                                        placeholder="2024">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="first-album">First Album Year :&emsp;</label>
+                                </td>
+                                <td>
+                                    <input type="number" id="first-album" name="first-album" min="1967" max="2018"
+                                        step="1" placeholder="1967">
+                                    <input type="number" id="first-album" name="first-album" min="1967" max="2018"
+                                        step="1" placeholder="2018">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="member">Number of Members :&emsp;</label>
+                                </td>
+                                <td>
 
-                            <label for="member3">3:</label>
-                            <input type="checkbox" id="member3" name="members" value="3">
+                                    <input type="checkbox" id="member1" class="members" name="members" value="1" checked>
+                                    <label class="members" for="member1">1</label>
 
-                            <label for="member4">4:</label>
-                            <input type="checkbox" id="member4" name="members" value="4">
+                                    <input type="checkbox" id="member2" class="members" name="members" value="2" checked>
+                                    <label class="members" for="member2">2</label>
 
-                            <label for="member5">5:</label>
-                            <input type="checkbox" id="member5" name="members" value="5">
+                                    <input type="checkbox" id="member3" class="members" name="members" value="3" checked>
+                                    <label class="members" for="member3">3</label>
 
-                            <label for="member6">6:</label>
-                            <input type="checkbox" id="member6" name="members" value="6">
+                                    <input type="checkbox" id="member4" class="members" name="members" value="4" checked>
+                                    <label class="members" for="member4">4</label>
 
-                            <label for="member7">7:</label>
-                            <input type="checkbox" id="member7" name="members" value="7">
+                                    <input type="checkbox" id="member5" class="members" name="members" value="5" checked>
+                                    <label class="members" for="member5">5</label>
 
-                            <label for="member8">8:</label>
-                            <input type="checkbox" id="member8" name="members" value="8">
-                        </div>
-                        <div class="select">
-                            <label for="dropdown-content">Choose a Location:&emsp;</label>
-                            <details>
-                                <summary>Country</summary>
-                                <div class="dropdown-content">
-                                    {{range .Countries}}
-                                    <input type="checkbox" name="countries" id="{{.}}" value="{{.}}">
-                                    <label for="{{.}}">{{.}}</label>
-                                    {{end}}
-                                </div>
-                            </details>
-                        </div>
-                        <button type="submit">Filter</button>
-                    </div>
-                </datalist>
-            </form>
-        </div>
+                                    <input type="checkbox" id="member6" class="members" name="members" value="6" checked>
+                                    <label class="members" for="member6">6</label>
+
+                                    <input type="checkbox" id="member7" class="members" name="members" value="7" checked>
+                                    <label class="members" for="member7">7</label>
+
+                                    <input type="checkbox" id="member8" class="members" name="members" value="8" checked>
+                                    <label class="members" for="member8">8</label>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="dropdown-content">Choose a Location:&emsp;</label>
+                                </td>
+                                <td>
+                                    <div class="select">
+                                        <input type="checkbox" id="dropdown-toggle" />
+                                        <label for="dropdown-toggle">Country</label>
+                                        <div class="dropdown-content">
+                                            {{range .Countries}}
+                                            <div class="dropdown-item">
+                                                <input type="checkbox" name="countries" id="{{.}}" value="{{.}}">
+                                                <label for="{{.}}">{{.}}</label>
+                                            </div>
+                                            {{end}}
+                                        </div>
+                                    </div>
+
+                                </td>
+                            </tr>
+                    </table>
+                    <button type="submit">Filter</button>
+                </div>
+            </details>
+
     </form>
 
     <div class="container">
