@@ -63,5 +63,5 @@ func validateMembers(f *fiters, members []string) {
 			f.err = errors.Join(f.err, errors.New("\n - invalid input : members\n "))
 		}
 	}
-	*f.members = ans
+	f.members = ans
 }
