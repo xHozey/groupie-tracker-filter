@@ -14,7 +14,7 @@
     <form action="/search">
 
         <div class="search-bar">
-            <input list="Artist" id="search" name="search" placeholder=" search..." />
+            <input list="Artists" id="search" name="search" placeholder=" search..." />
             <datalist id="Artists">
                 {{range .Artists}}
                 <option value="{{.Name}}">{{.Name}} -Artist/Band</option>

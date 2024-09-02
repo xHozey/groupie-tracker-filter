@@ -1,6 +1,7 @@
 package groupie
 
 import (
+	"fmt"
 	"html/template"
 	"log"
 	"net/http"
@@ -117,30 +118,33 @@ func sanitiseinput(cd, fa, members, country []string) fiters {
 
 func Search(w http.ResponseWriter, r *http.Request) {
 	var result []Artist
-	search := r.FormValue("search")
+	search := strings.ToLower(r.FormValue("search"))
 	seen := make([]bool, 53)
-
+	fmt.Println(search)
 	for i, artist := range Artistians {
+		if strings.Contains(strings.ToLower(artist.Name), search) {
+			if !seen[artist.Id] {
+				result = append(result, artist)
+				seen[artist.Id] = true
+			}
+		}
+		if strings.Contains(strings.ToLower(strconv.Itoa(artist.CreationDate)), search) {
+			if !seen[artist.Id] {
+				result = append(result, artist)
+				seen[artist.Id] = true
+			}
+		}
+		if strings.Contains(strings.ToLower(artist.FirstAlbum), search) {
+			if !seen[artist.Id] {
+				result = append(result, artist)
+				seen[artist.Id] = true
+			}
+		}
 		for _, member := range artist.Members {
-			if strings.Contains(strings.ToLower(artist.Name), search) {
-				if !seen[artist.Id] {
-					result = append(result, artist)
-					seen[artist.Id] = true
-				}
-			}
-			if strings.Contains(strings.ToLower(strconv.Itoa(artist.CreationDate)), search) {
-				if !seen[artist.Id] {
-					result = append(result, artist)
-					seen[artist.Id] = true
-				}
-			}
-			if strings.Contains(strings.ToLower(artist.FirstAlbum), search) {
-				if !seen[artist.Id] {
-					result = append(result, artist)
-					seen[artist.Id] = true
-				}
+			if member == "freddie mercury" {
 			}
 			if strings.Contains(strings.ToLower(member), search) {
+				fmt.Printf("'%20s' '%20s' %v %v %v\n", strings.ToLower(member), search, strings.Contains(strings.ToLower(member), search), !seen[artist.Id], result)
 				if !seen[artist.Id] {
 					result = append(result, artist)
 					seen[artist.Id] = true
@@ -156,8 +160,10 @@ func Search(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 	}
+	fmt.Printf("result :%v\n", result)
 	f := sanitiseinput(r.Form["year"], r.Form["first-album"], r.Form["members"], r.Form["countries"])
 	result = filterData(f, result)
+	fmt.Printf("result :%v, %v\n", result, f)
 	tml, err := template.ParseFiles("templates/result.html")
 	if err != nil {
 		log.Fatal(err)

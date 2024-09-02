@@ -10,6 +10,7 @@ import (
 func main() {
 	fs := http.FileServer(http.Dir("./templates"))
 	http.Handle("/templates/", http.StripPrefix("/templates/", fs))
+	http.HandleFunc("/search", web.Search)
 	http.HandleFunc("/", web.Index)
 	http.HandleFunc("/artist", web.ArtistInfo)
 	http.HandleFunc("/result", web.Filter)
