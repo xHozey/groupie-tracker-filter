@@ -17,11 +17,7 @@ func Index(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	tpl := Static.index
-	for i := 0; i <= len(Artistians)-1; i++ {
-		if Artistians[i].Id == 21 {
-			Artistians[i].Image = "https://media.istockphoto.com/id/157030584/vector/thumb-up-emoticon.jpg?s=612x612&w=0&k=20&c=GGl4NM_6_BzvJxLSl7uCDF4Vlo_zHGZVmmqOBIewgKg="
-		}
-	}
+
 	err := tpl.Execute(w, struct {
 		Artists   []Artist
 		Loc       []Locations
@@ -43,9 +39,7 @@ func ArtistInfo(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Bad Request", http.StatusBadRequest)
 		return
 	}
-	if data.Art.Id == 21 {
-		data.Art.Image = "https://media.istockphoto.com/id/157030584/vector/thumb-up-emoticon.jpg?s=612x612&w=0&k=20&c=GGl4NM_6_BzvJxLSl7uCDF4Vlo_zHGZVmmqOBIewgKg="
-	}
+
 	tmpl := Static.artist
 
 	err := tmpl.Execute(w, data)

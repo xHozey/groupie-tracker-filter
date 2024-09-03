@@ -10,7 +10,7 @@ import (
 )
 
 func init() {
-	file, err := os.ReadFile("config.json")
+	file, err := os.ReadFile("templates/config.json")
 	if err != nil {
 		fmt.Printf("Error reading file: %v\n", err)
 		return
