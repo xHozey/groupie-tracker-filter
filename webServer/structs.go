@@ -31,6 +31,13 @@ func init() {
 		log.Fatal(err)
 	}
 
+	// 	for _, d := range  {
+	// for _, b := range Static.Countries {
+	// 		if strings.HasSuffix(d, b) {
+	// 			j[b] = append(j[b], d)
+	// 		}
+	// 	}
+	// }
 	loca, eror := http.Get("https://groupietrackers.herokuapp.com/api/locations")
 	if eror != nil {
 		log.Fatal(eror)
@@ -57,9 +64,10 @@ func init() {
 }
 
 type static struct {
-	Countries []string `json:"countries"`
-	Date      []string `json:"date"`
-	Fa        []string `json:"fa"`
+	Countries []string            `json:"countries"`
+	Date      []string            `json:"date"`
+	Fa        []string            `json:"fa"`
+	Countloc  map[string][]string `json:"test"`
 	index     *template.Template
 	artist    *template.Template
 	result    *template.Template

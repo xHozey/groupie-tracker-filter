@@ -60,7 +60,7 @@ input[type="checkbox"] {
     padding: 5px;
     position: absolute;
     width: 100%;
-    z-index: 5;
+    z-index: 1;
 }
 
 .dropdown-content label {
@@ -73,7 +73,12 @@ input[type="checkbox"] {
     background-color: #e0e0e0;
 }
 
-.dropdown-content input[type="checkbox"]:checked+label {
+
+.dropdown-content input[type="checkbox"]:checked+label+.location-group{
+    display: block;
+}
+
+.dropdown-content input[type="checkbox"]:checked+label{
     background-color: #d0d0d0;
 }
 
@@ -110,24 +115,44 @@ td{
     padding: 8px;
 }
 
+.dropdown-content input[type="checkbox"]+label+.location-group{
+    display: none;
+    position: relative;
+    background-color: white;
+    min-width: 160px;
+    max-width: 200px;
+    width: 100%;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    height: 100%;
+    height: fit-content;
+    margin-bottom: 10px;
+}
+
 .dropdown-content {
     display: none;
     position: absolute;
     background-color: white;
     min-width: 160px;
+    max-width: 500px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
     max-height: 70%;
-    overflow: scroll;
+    overflow-y: scroll;
+    height: max-content;
+    width: 300px;
+    padding-bottom: 10px;
 }
 .dropdown-item{
     position: relative;
+    right: 0px;
     z-index: 0;
 }
 
 .dropdown-content,
 .dropdown-item label {
     padding: 8px 16px;
+    margin: 5px;
 
 }
 

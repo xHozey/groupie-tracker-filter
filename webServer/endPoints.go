@@ -17,12 +17,13 @@ func Index(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	tpl := Static.index
-
 	err := tpl.Execute(w, struct {
 		Artists   []Artist
 		Loc       []Locations
 		Countries []string
-	}{Artistians, loc.Index, Static.Countries})
+		Locations map[string][]string
+	}{Artistians, loc.Index, Static.Countries, Static.Countloc})
+	// fmt.Println(Static.Countloc)
 	if err != nil {
 		log.Print(err, "endPoints")
 	}
