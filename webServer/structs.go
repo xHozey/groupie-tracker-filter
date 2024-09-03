@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strings"
 )
 
 func init() {
@@ -31,13 +32,6 @@ func init() {
 		log.Fatal(err)
 	}
 
-	// 	for _, d := range  {
-	// for _, b := range Static.Countries {
-	// 		if strings.HasSuffix(d, b) {
-	// 			j[b] = append(j[b], d)
-	// 		}
-	// 	}
-	// }
 	loca, eror := http.Get("https://groupietrackers.herokuapp.com/api/locations")
 	if eror != nil {
 		log.Fatal(eror)
@@ -47,7 +41,22 @@ func init() {
 	if err != nil {
 		log.Fatalf("Failed to decode JSON: %v", err)
 	}
-
+	Static.Countloc = map[string][]string{}
+	for _, d := range loc.Index {
+		for _, v := range d.Location {
+			for _, b := range Static.Countries {
+				if strings.HasSuffix(v, b) {
+					if len(Static.Countloc[b]) == 0 {
+						Static.Countloc[b] = make([]string, 1)
+					} else {
+						Static.Countloc[b] = append(Static.Countloc[b], v)
+					}
+					// fmt.Println(v, Static.Countloc[b], b)
+				}
+			}
+		}
+	}
+	fmt.Println(Static.Countloc["argentina"])
 	Static.index, err = template.ParseFiles("templates/index.html")
 	if err != nil || Static.index == nil {
 		log.Fatal(err, "endPoints")
@@ -64,10 +73,10 @@ func init() {
 }
 
 type static struct {
-	Countries []string            `json:"countries"`
-	Date      []string            `json:"date"`
-	Fa        []string            `json:"fa"`
-	Countloc  map[string][]string `json:"test"`
+	Countries []string `json:"countries"`
+	Date      []string `json:"date"`
+	Fa        []string `json:"fa"`
+	Countloc  map[string][]string
 	index     *template.Template
 	artist    *template.Template
 	result    *template.Template
@@ -76,10 +85,11 @@ type static struct {
 var Static static
 
 type fiters struct {
-	cd, fa  [2]string
-	members []bool
-	country []string
-	err     error
+	cd, fa    [2]string
+	members   []bool
+	country   []string
+	locations []string
+	err       error
 }
 
 type Result struct {

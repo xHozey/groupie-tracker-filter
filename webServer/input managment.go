@@ -1,13 +1,18 @@
 package groupie
 
-import "errors"
+import (
+	"errors"
+	"fmt"
+	"strings"
+)
 
-func sanitiseinput(cd, fa, members, country []string) fiters {
+func sanitiseinput(cd, fa, members, country, locations []string) fiters {
 	var f fiters
 
 	f.cd = check_min_max(cd, Static.Date[0], Static.Date[1], &f.err)
 	f.fa = check_min_max(fa, Static.Fa[0], Static.Fa[1], &f.err)
-	f.country = validateCountry(country, &f.err)
+	f.country, f.locations = validateCountry(country, locations, &f.err)
+	fmt.Println(locations, f.locations)
 	validateMembers(&f, members)
 	return f
 }
@@ -35,15 +40,31 @@ func check_min_max(data []string, a, b string, f *error) [2]string {
 	return [2]string{data[0], data[1]}
 }
 
-func validateCountry(countries []string, err *error) []string {
+func validateCountry(countries, locations []string, err *error) ([]string, []string) {
 	if len(countries) == 0 {
-		return nil
+		return nil, nil
 	}
 	validCountries := []string{}
+	validlocations := []string{}
+	chekloc := len(locations) != 0
 	for _, c := range countries {
 		for _, l := range Static.Countries {
 			if c == l {
+				fmt.Println("daz", c, chekloc)
 				validCountries = append(validCountries, l)
+				if chekloc {
+					for _, l1 := range locations {
+						if strings.HasSuffix(l1, l) {
+							fmt.Println("daz2", l1)
+							for _, c1 := range Static.Countloc[l] {
+								if l1 == c1 {
+									validlocations = append(validlocations, l1)
+									fmt.Println("daz3", c1)
+								}
+							}
+						}
+					}
+				}
 				break
 			}
 		}
@@ -51,7 +72,8 @@ func validateCountry(countries []string, err *error) []string {
 	if len(countries) > len(validCountries) {
 		*err = errors.Join(*err, errors.New("\n - invalid input : country\n "))
 	}
-	return validCountries
+	fmt.Println(validCountries, validlocations)
+	return validCountries, validlocations
 }
 
 func validateMembers(f *fiters, members []string) {

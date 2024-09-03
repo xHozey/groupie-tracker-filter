@@ -1,6 +1,7 @@
 package groupie
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"strconv"
@@ -60,8 +61,10 @@ func Filter(w http.ResponseWriter, r *http.Request) {
 	first_album := r.Form["first-album"]
 	members := r.Form["members"]
 	country := r.Form["countries"]
+	locations := r.Form["location"]
+	fmt.Println(locations)
 	tmpl := Static.result
-	sanitized := sanitiseinput(creatin_date, first_album, members, country)
+	sanitized := sanitiseinput(creatin_date, first_album, members, country, locations)
 	filtredData := filterData(sanitized, Artistians)
 	err = tmpl.Execute(w, filtredData)
 	if err != nil {
@@ -110,7 +113,8 @@ func Search(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 	}
-	f := sanitiseinput(r.Form["year"], r.Form["first-album"], r.Form["members"], r.Form["countries"])
+	fmt.Println(r.Form["location"], r.Form["countries"])
+	f := sanitiseinput(r.Form["year"], r.Form["first-album"], r.Form["members"], r.Form["countries"], r.Form["location"])
 	result = filterData(f, result)
 	tml := Static.result
 	err := tml.Execute(w, result)
