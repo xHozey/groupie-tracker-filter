@@ -1,8 +1,6 @@
 package groupie
 
 import (
-	"fmt"
-	"html/template"
 	"log"
 	"net/http"
 	"strconv"
@@ -52,7 +50,8 @@ func ArtistInfo(w http.ResponseWriter, r *http.Request) {
 
 	err := tmpl.Execute(w, data)
 	if err != nil {
-		log.Fatal(err, "endPoints")
+		http.Error(w, "internal server eror", http.StatusInternalServerError)
+		return
 	}
 }
 
@@ -69,14 +68,17 @@ func Filter(w http.ResponseWriter, r *http.Request) {
 	tmpl := Static.result
 	sanitized := sanitiseinput(creatin_date, first_album, members, country)
 	filtredData := filterData(sanitized, Artistians)
-	tmpl.Execute(w, filtredData)
+	err = tmpl.Execute(w, filtredData)
+	if err != nil {
+		http.Error(w, "internal server eror", http.StatusInternalServerError)
+		return
+	}
 }
 
 func Search(w http.ResponseWriter, r *http.Request) {
 	var result []Artist
 	search := strings.ToLower(r.FormValue("search"))
 	seen := make([]bool, 53)
-	fmt.Println(search)
 	for i, artist := range Artistians {
 		if strings.Contains(strings.ToLower(artist.Name), search) {
 			if !seen[artist.Id] {
@@ -115,9 +117,10 @@ func Search(w http.ResponseWriter, r *http.Request) {
 	}
 	f := sanitiseinput(r.Form["year"], r.Form["first-album"], r.Form["members"], r.Form["countries"])
 	result = filterData(f, result)
-	tml, err := template.ParseFiles("templates/result.html")
+	tml := Static.result
+	err := tml.Execute(w, result)
 	if err != nil {
-		log.Fatal(err)
+		http.Error(w, "internal server eror", http.StatusInternalServerError)
+		return
 	}
-	tml.Execute(w, result)
 }

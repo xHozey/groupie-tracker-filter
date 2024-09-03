@@ -11,18 +11,17 @@
 </head>
 
 <body>
+    <a href="/" class="button-wrapper"><button>Go back</button></a>
     <div class="container">
         {{range .}}
-        <div class="card">
+        <a href="/artist?Id={{.Id}}" class="card">
             <img src="{{.Image}}" alt="{{.Name}}">
             <h3 class="card-name">{{.Name}}</h3>
             <p>Creation Date: {{.CreationDate}}</p>
             <p>First Album: {{.FirstAlbum}}</p>
-            <a href="/artist?Id={{.Id}}"><button class="btn">Go back</button></a>
-        </div>
+        </a>
         {{end}}
     </div>
-    <a href="/"><button class="btn">Go back</button></a>
 </body>
 
 </html>
