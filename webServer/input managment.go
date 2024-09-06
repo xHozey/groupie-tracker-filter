@@ -76,7 +76,7 @@ func validateCountry(countries, locations []string, err *error) map[string][]str
 
 func validateMembers(f *fiters, members []string) {
 	if len(members) == 0 {
-		f.members = []bool{true, true, true, true, true, true, true, true}
+		f.members = []bool{true, true, true, true, true, true, true, true, true}
 		return
 	}
 	ans := make([]bool, 9)
