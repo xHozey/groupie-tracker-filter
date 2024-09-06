@@ -14,12 +14,13 @@ func init() {
 	file, err := os.ReadFile("templates/config.json")
 	if err != nil {
 		fmt.Printf("Error reading file: %v\n", err)
-		return
+		os.Exit(1)
 	}
 
 	err = json.Unmarshal(file, &Static)
 	if err != nil {
 		fmt.Printf("Error decoding JSON: %v\n", err)
+		os.Exit(1)
 	}
 
 	resp, err := http.Get("https://groupietrackers.herokuapp.com/api/artists")
@@ -47,16 +48,22 @@ func init() {
 			for _, b := range Static.Countries {
 				if strings.HasSuffix(v, b) {
 					if len(Static.Countloc[b]) == 0 {
-						Static.Countloc[b] = make([]string, 1)
-					} else {
+						Static.Countloc[b] = []string{}
+					}
+					a := true
+					for _, f := range Static.Countloc[b] {
+						if f == v {
+							a = false
+							break
+						}
+					}
+					if a {
 						Static.Countloc[b] = append(Static.Countloc[b], v)
 					}
-					// fmt.Println(v, Static.Countloc[b], b)
 				}
 			}
 		}
 	}
-	fmt.Println(Static.Countloc["argentina"])
 	Static.index, err = template.ParseFiles("templates/index.html")
 	if err != nil || Static.index == nil {
 		log.Fatal(err, "endPoints")
@@ -85,11 +92,10 @@ type static struct {
 var Static static
 
 type fiters struct {
-	cd, fa    [2]string
-	members   []bool
-	country   []string
-	locations []string
-	err       error
+	cd, fa      [2]string
+	members     []bool
+	country_loc map[string][]string
+	err         error
 }
 
 type Result struct {

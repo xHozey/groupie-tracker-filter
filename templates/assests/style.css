@@ -42,15 +42,19 @@ input[type="checkbox"] {
 .members+label {
     max-width: 3px;
     padding-inline: 9px;
+    /* background-color: #ff2402ce; */
 }
 
 .members[type="checkbox"]:checked+label {
-    background-color: #ff0000;
+    background-color: #16cd4ace;
 }
 
 
 
 .dropdown-content {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 50%;
     display: none;
     border: 1px solid #ccc;
     border-radius: 4px;

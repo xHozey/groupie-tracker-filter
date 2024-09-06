@@ -13,7 +13,7 @@
 <body>
     <a href="/" class="button-wrapper"><button>Go back</button></a>
     <div class="container">
-        {{range .}}
+        {{range .Resul}}
         <a href="/artist?Id={{.Id}}" class="card">
             <img src="{{.Image}}" alt="{{.Name}}">
             <h3 class="card-name">{{.Name}}</h3>

@@ -1,7 +1,6 @@
 package groupie
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 	"strconv"
@@ -24,7 +23,6 @@ func Index(w http.ResponseWriter, r *http.Request) {
 		Countries []string
 		Locations map[string][]string
 	}{Artistians, loc.Index, Static.Countries, Static.Countloc})
-	// fmt.Println(Static.Countloc)
 	if err != nil {
 		log.Print(err, "endPoints")
 	}
@@ -51,29 +49,11 @@ func ArtistInfo(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func Filter(w http.ResponseWriter, r *http.Request) {
-	err := r.ParseForm()
-	if err != nil {
-		http.Error(w, "Unable to parse form", http.StatusBadRequest)
-		return
-	}
-	creatin_date := r.Form["year"]
-	first_album := r.Form["first-album"]
-	members := r.Form["members"]
-	country := r.Form["countries"]
-	locations := r.Form["location"]
-	fmt.Println(locations)
-	tmpl := Static.result
-	sanitized := sanitiseinput(creatin_date, first_album, members, country, locations)
-	filtredData := filterData(sanitized, Artistians)
-	err = tmpl.Execute(w, filtredData)
-	if err != nil {
-		http.Error(w, "internal server eror", http.StatusInternalServerError)
-		return
-	}
-}
-
 func Search(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodGet {
+		http.Error(w, "Method Not Allowed", http.StatusMethodNotAllowed)
+		return
+	}
 	var result []Artist
 	search := strings.ToLower(r.FormValue("search"))
 	seen := make([]bool, 53)
@@ -113,8 +93,8 @@ func Search(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 	}
-	fmt.Println(r.Form["location"], r.Form["countries"])
-	f := sanitiseinput(r.Form["year"], r.Form["first-album"], r.Form["members"], r.Form["countries"], r.Form["location"])
+
+	f := sanitiseinput(r.Form["year"], r.Form["first-album"], r.Form["members"], r.Form["country"], r.Form["location"])
 	result = filterData(f, result)
 	tml := Static.result
 	err := tml.Execute(w, result)

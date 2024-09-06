@@ -69,28 +69,28 @@
                             </td>
                             <td>
 
-                                <input type="checkbox" id="member1" class="members" name="members" value="1" checked>
+                                <input type="checkbox" id="member1" class="members" name="members" value="1">
                                 <label class="members" for="member1">1</label>
 
-                                <input type="checkbox" id="member2" class="members" name="members" value="2" checked>
+                                <input type="checkbox" id="member2" class="members" name="members" value="2">
                                 <label class="members" for="member2">2</label>
 
-                                <input type="checkbox" id="member3" class="members" name="members" value="3" checked>
+                                <input type="checkbox" id="member3" class="members" name="members" value="3">
                                 <label class="members" for="member3">3</label>
 
-                                <input type="checkbox" id="member4" class="members" name="members" value="4" checked>
+                                <input type="checkbox" id="member4" class="members" name="members" value="4">
                                 <label class="members" for="member4">4</label>
 
-                                <input type="checkbox" id="member5" class="members" name="members" value="5" checked>
+                                <input type="checkbox" id="member5" class="members" name="members" value="5">
                                 <label class="members" for="member5">5</label>
 
-                                <input type="checkbox" id="member6" class="members" name="members" value="6" checked>
+                                <input type="checkbox" id="member6" class="members" name="members" value="6">
                                 <label class="members" for="member6">6</label>
 
-                                <input type="checkbox" id="member7" class="members" name="members" value="7" checked>
+                                <input type="checkbox" id="member7" class="members" name="members" value="7">
                                 <label class="members" for="member7">7</label>
 
-                                <input type="checkbox" id="member8" class="members" name="members" value="8" checked>
+                                <input type="checkbox" id="member8" class="members" name="members" value="8">
                                 <label class="members" for="member8">8</label>
 
                             </td>
@@ -107,18 +107,15 @@
                                     <div class="dropdown-content">
                                         {{range $key, $values := .Locations}}
                                         <div class="dropdown-item">
-                                            <input type="checkbox" class="country-checkbox" id="{{$key}}"
+                                            <input type="checkbox" name="country" class="country-checkbox" id="{{$key}}"
                                                 value="{{$key}}">
                                             <label for="{{$key}}">{{$key}}</label>
                                             <details id="items">
                                                 <summary class="select">{{$key}} Locations</summary>
                                                 {{range $values}}
-                                                <option>
-
-                                                    <input type="checkbox" name="location" id="location-{{$key}}-{{.}}"
-                                                        value="{{.}}">
-                                                    <label for="location-{{$key}}-{{.}}"> - {{.}}</label>
-                                                </option>
+                                                <input type="checkbox" name="location" id="location-{{$key}}-{{.}}"
+                                                    value="{{.}}">
+                                                <label for="location-{{$key}}-{{.}}"> - {{.}}</label>
                                                 {{end}}
                                             </details>
                                         </div>

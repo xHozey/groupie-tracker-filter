@@ -22,14 +22,27 @@ func filterData(f fiters, data []Artist) []Artist {
 			continue
 		}
 		g = true
-		for _, c := range f.country {
+		for c, azer := range f.country_loc {
 			t := loc.Index[a].Location
-			for i, loc := range t {
-				if strings.HasSuffix(loc, c) {
-					break
+			if len(azer) == 0 {
+				for i, loc := range t {
+					if strings.HasSuffix(loc, c) {
+						break
+					}
+					if i == len(t)-1 {
+						g = false
+					}
 				}
-				if i == len(t)-1 {
-					g = false
+			} else {
+				for _, v := range azer {
+					for i, loc := range t {
+						if loc == v {
+							break
+						}
+						if i == len(t)-1 {
+							g = false
+						}
+					}
 				}
 			}
 
