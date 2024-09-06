@@ -35,7 +35,7 @@
             </datalist>
             <button type="submit" class="search-btn">search</button>
         </div>
-        <details class="form-filter">
+        <details class="form-filter" open>
             <summary>Show Filters</summary>
             <div class="filter">
                 <table>
@@ -101,7 +101,7 @@
                             </td>
                             <td>
                                 <div class="select">
-                                    <input type="checkbox" id="dropdown-toggle" />
+                                    <input type="checkbox" class="dropdown-toggle" id="dropdown-toggle" />
                                     <label for="dropdown-toggle">Country</label>
 
                                     <div class="dropdown-content">
@@ -110,19 +110,17 @@
                                             <input type="checkbox" class="country-checkbox" id="{{$key}}"
                                                 value="{{$key}}">
                                             <label for="{{$key}}">{{$key}}</label>
-                                            <div class="location-group">
-                                                <input type="checkbox" id="location" />
-                                                <label for="location">{{$key}} locations</label>
-                                                <div class="location-group">
-                                                    {{range $values}}
-                                                    <div class="dropdown-item">
-                                                        <input type="checkbox" name="location"
-                                                            id="location-{{$key}}-{{.}}" value="{{.}}">
-                                                        <label for="location-{{$key}}-{{.}}">{{.}}</label>
-                                                    </div>
-                                                    {{end}}
-                                                </div>
-                                            </div>
+                                            <details id="items">
+                                                <summary class="select">{{$key}} Locations</summary>
+                                                {{range $values}}
+                                                <option>
+
+                                                    <input type="checkbox" name="location" id="location-{{$key}}-{{.}}"
+                                                        value="{{.}}">
+                                                    <label for="location-{{$key}}-{{.}}"> - {{.}}</label>
+                                                </option>
+                                                {{end}}
+                                            </details>
                                         </div>
                                         {{end}}
                                     </div>
